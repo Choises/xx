@@ -937,26 +937,36 @@ async function updateWeatherReal() {
     }
 
 
-       // Κρατάμε μόνο τον καιρό στο αρχικό script!
+       // Ανανέωση Metadata Iframe ανά 10 δευτερόλεπτα, ΜΟΝΟ αν το YouTube/Chat είναι κλειστό
+    setInterval(() => {
+        const sharedOverlay = document.getElementById('youtubeOverlay');
+        const iframe = document.getElementById('metadataIframe');
+        
+        // Ελέγχουμε αν το παράθυρο είναι ανοιχτό
+        const isOverlayOpen = sharedOverlay && 
+            (sharedOverlay.classList.contains('open') || 
+             sharedOverlay.style.display === 'block' || 
+             sharedOverlay.style.opacity === '1');
+
+        // Αν το παράθυρο είναι ΚΛΕΙΣΤΟ, τότε μόνο ανανέωσε τους τίτλους
+        if (!isOverlayOpen && iframe) {
+            iframe.src = iframe.src;
+        }
+    }, 10000);
+
+    // Εκκίνηση και αυτόματη ανανέωση καιρού κάθε 15 λεπτά (Έμεινε άθικτο!)
     updateWeatherReal();
     setInterval(updateWeatherReal, 900000);
 
 
 </script><!-- Διορθωμένο Script: Δυναμικό ύψος για να "μαζεύει" το Chat όταν μικραίνει ο browser -->
-<!-- Έξυπνο block JavaScript: Παγώνει τα πάντα στη σελίδα για ασταμάτητο YouTube στο κινητό -->
+<!-- Αυτόνομο και ασφαλές Script για το YouTube και το Chat στην κορυφή -->
 <script>
     (function() {
-        // Κρατάμε τις ταυτότητες των intervals για να μπορούμε να τα σταματάμε
-        let clockInterval = null;
         let metadataInterval = null;
 
-        // Συναρτήσεις για Διαχείριση των Διεργασιών (Start / Stop)
-        function startAllBackgroundTasks() {
-            // 1. Ξεκινάει το ρολόι ανά δευτερόλεπτο (αν υπάρχει η συνάρτηση)
-            if (typeof updateClock === 'function' && !clockInterval) {
-                clockInterval = setInterval(updateClock();
-            }
-            // 2. Ξεκινάει η ανανέωση των τίτλων ανά 10 δευτερόλεπτα
+        // Συναρτήσεις για την ανανέωση των τίτλων
+        function startMetadataUpdate() {
             if (!metadataInterval) {
                 metadataInterval = setInterval(() => {
                     const iframe = document.getElementById('metadataIframe');
@@ -965,12 +975,14 @@ async function updateWeatherReal() {
             }
         }
 
-        function stopAllBackgroundTasks() {
-            // Σταματάμε το ρολόι και τους τίτλους για να ελαφρύνει 100% το κινητό
-            if (clockInterval) { clearInterval(clockInterval); clockInterval = null; }
-            if (metadataInterval) { clearInterval(metadataInterval); metadataInterval = null; }
+        function stopMetadataUpdate() {
+            if (metadataInterval) {
+                clearInterval(metadataInterval);
+                metadataInterval = null;
+            }
         }
 
+        // Εκκίνηση ΜΟΝΟ όταν φορτώσουν πλήρως όλα τα στοιχεία του HTML
         window.addEventListener('load', () => {
             const chatButton = document.getElementById('chatBtn');
             const youtubeButton = document.getElementById('youtubeBtn');
@@ -982,8 +994,8 @@ async function updateWeatherReal() {
             const youtubeContainer = document.getElementById('youtubeContainer');
             const overlayTitle = document.getElementById('overlayTitle');
 
-            // Αρχική εκκίνηση των διεργασιών μόλις φορτώσει η σελίδα
-            startAllBackgroundTasks();
+            // Ξεκινάει η κανονική ανανέωση των τίτλων στην αρχή
+            startMetadataUpdate();
 
             // Λειτουργία όταν πατάμε το "Άνοιγμα Chat"
             if (chatButton && sharedOverlay) {
@@ -992,7 +1004,7 @@ async function updateWeatherReal() {
                     if (youtubeContainer) youtubeContainer.style.display = 'none'; 
                     if (chatContainer) {
                         chatContainer.style.display = 'block'; 
-                        chatContainer.style.height = 'calc(100% - 60px)'; 
+                        chatContainer.style.height = '560px'; 
                     }
                     if (overlayTitle) overlayTitle.textContent = "Live Chat"; 
                     
@@ -1011,8 +1023,8 @@ async function updateWeatherReal() {
                     if (youtubeContainer) youtubeContainer.style.display = 'block'; 
                     if (overlayTitle) overlayTitle.textContent = "YouTube Video"; 
                     
-                    // ΠΑΓΩΝΟΥΜΕ ΤΑ ΠΑΝΤΑ: Το κινητό αφοσιώνεται μόνο στο βίντεο
-                    stopAllBackgroundTasks();
+                    // ΣΤΑΜΑΤΑΕΙ η ανανέωση των τίτλων για να μην κολλάει το βίντεο στο κινητό
+                    stopMetadataUpdate();
 
                     sharedOverlay.style.setProperty('display', 'block', 'important');
                     setTimeout(() => {
@@ -1033,7 +1045,7 @@ async function updateWeatherReal() {
                 });
             }
 
-            // Λειτουργία όταν κλείνουμε το παράθυρο με το "Χ"
+            // Λειτουργia όταν κλείνουμε το παράθυρο με το "Χ"
             if (closeButton && sharedOverlay) {
                 closeButton.addEventListener('click', () => {
                     sharedOverlay.style.opacity = '0';
@@ -1041,8 +1053,8 @@ async function updateWeatherReal() {
                     setTimeout(() => {
                         sharedOverlay.style.setProperty('display', 'none', 'important');
                         
-                        // ΕΠΑΝΑΦΟΡΑ: Ξεκινάνε πάλι το ρολόι και οι τίτλοι κανονικά
-                        startAllBackgroundTasks();
+                        // ΞΕΚΙΝΑΕΙ ΞΑΝΑ η ανανέωση των τίτλων αφού έκλεισε το βίντεο
+                        startMetadataUpdate();
                     }, 300);
                 });
             }
