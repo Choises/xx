@@ -661,9 +661,11 @@
  
  
  
-            <div class="title-mask-container">
-                <iframe id="metadataIframe" src="https://status.rcast.net/200586" scrolling="no"></iframe>
-            </div>
+            <!-- Διορθωμένο κουτί τίτλων: Τώρα η JavaScript μπορεί να το κρύβει για να μην κολλάει το YouTube -->
+<div class="title-mask-container" id="metadataContainer">
+    <iframe id="metadataIframe" src="https://status.rcast.net/200586" scrolling="no"></iframe>
+</div>
+
 <!-- ΝΕΟ ΠΛΑΙΣΙΟ ΚΑΙΡΟΥ ΚΑΙ ΠΟΛΗΣ -->
 <div style="color: #ffffff; font-size: 1rem; font-weight: bold; margin-bottom: 20px; text-shadow: 0px 0px 8px #00f5ff; display: flex; align-items: center; gap: 8px;">
     <!-- Η νέα εικόνα PNG που θα αλλάζει αυτόματα -->
@@ -960,33 +962,35 @@ async function updateWeatherReal() {
  
  
 </script><!-- Διορθωμένο Script: Δυναμικό ύψος για να "μαζεύει" το Chat όταν μικραίνει ο browser -->
+<!-- Ξεχωριστό block JavaScript μόνο για το Chat, διορθωμένο για να μην κολλάει το κινητό -->
 <script>
     (function() {
         window.addEventListener('load', () => {
+            // Εδώ προστέθηκαν τα νέα const και η μεταβλητή για το metadataContainer
             const chatButton = document.getElementById('chatBtn');
             const youtubeButton = document.getElementById('youtubeBtn');
             const closeButton = document.getElementById('closeYoutubeBtn');
             const loadVideoBtn = document.getElementById('loadVideoBtn');
             const sharedOverlay = document.getElementById('youtubeOverlay');
- 
+            
             const chatContainer = document.getElementById('chatContainer');
             const youtubeContainer = document.getElementById('youtubeContainer');
             const overlayTitle = document.getElementById('overlayTitle');
- 
+            const metadataContainer = document.getElementById('metadataContainer'); // Η νέα προσθήκη!
+
             // Λειτουργία όταν πατάμε το "Άνοιγμα Chat"
             if (chatButton && sharedOverlay) {
                 chatButton.addEventListener('click', (e) => {
                     e.preventDefault();
                     if (youtubeContainer) youtubeContainer.style.display = 'none'; 
- 
-                    // Διορθώθηκε εδώ: Δυναμικό ύψος που προσαρμόζεται πάντα στον player
+                    
                     if (chatContainer) {
                         chatContainer.style.display = 'block'; 
                         chatContainer.style.height = 'calc(100% - 60px)'; 
                     }
- 
+                    
                     if (overlayTitle) overlayTitle.textContent = "Live Chat"; 
- 
+                    
                     sharedOverlay.style.setProperty('display', 'block', 'important');
                     setTimeout(() => {
                         sharedOverlay.style.opacity = '1';
@@ -994,14 +998,17 @@ async function updateWeatherReal() {
                     }, 10);
                 });
             }
- 
+
             // Λειτουργία όταν ανοίγουμε το YouTube (από το μενού)
             if (youtubeButton && sharedOverlay) {
                 youtubeButton.addEventListener('click', () => {
                     if (chatContainer) chatContainer.style.display = 'none'; 
                     if (youtubeContainer) youtubeContainer.style.display = 'block'; 
                     if (overlayTitle) overlayTitle.textContent = "YouTube Video"; 
- 
+                    
+                    // ΚΡΥΒΟΥΜΕ ΤΟΥΣ ΤΙΤΛΟΥΣ για να ελαφρύνει το κινητό και να μην κολλάει το βίντεο!
+                    if (metadataContainer) metadataContainer.style.display = 'none';
+                    
                     sharedOverlay.style.setProperty('display', 'block', 'important');
                     setTimeout(() => {
                         sharedOverlay.style.opacity = '1';
@@ -1009,7 +1016,7 @@ async function updateWeatherReal() {
                     }, 10);
                 });
             }
- 
+
             // Λειτουργία όταν πατάμε "Έναρξη Βίντεο"
             if (loadVideoBtn && sharedOverlay) {
                 loadVideoBtn.addEventListener('click', () => {
@@ -1020,7 +1027,7 @@ async function updateWeatherReal() {
                     }, 300);
                 });
             }
- 
+
             // Λειτουργία όταν κλείνουμε το παράθυρο με το "Χ"
             if (closeButton && sharedOverlay) {
                 closeButton.addEventListener('click', () => {
@@ -1028,12 +1035,15 @@ async function updateWeatherReal() {
                     sharedOverlay.style.pointerEvents = 'none';
                     setTimeout(() => {
                         sharedOverlay.style.setProperty('display', 'none', 'important');
+                        
+                        // ΕΠΑΝΑΦΕΡΟΥΜΕ ΤΟΥΣ ΤΙΤΛΟΥΣ αφού έκλεισε το βίντεο
+                        if (metadataContainer) metadataContainer.style.display = 'flex';
                     }, 300);
                 });
             }
         });
     })();
- 
 </script>
+
 </body>
 </html>
