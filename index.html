@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🇬🇷Panagiotis🇬🇷</title>
+    <style>
+       
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+       body, html {
+    width: 100%;
+    height: 100svh; 
+    
+   
+    background-image: url('https://i.ibb.co/v41wj4K9/9.png');
+    background-size: cover;       
+    background-position: center;   
+    background-repeat: no-repeat;  
+    
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+}
+
+       
+       .player-container {
+    width: 100%;
+    height: 100%;
+    max-width: 480px;
+    background: linear-gradient(180deg, #ff007f, #7f00ff, #00f0ff, #ff007f,#181822 0%, #0a0a0f, #ff0000, #ffd700, #00ff00, #ff0000, #ff0000, #ffd700, #00ff00, #ff0000 100%);
+    border-radius: 28px; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Το εσωτερικό περίγραμμα που εμφανίζεται κανονικά χωρίς να επηρεάζει το μέγεθος */
+.player-container::before {
+    content: '';
+    position: absolute;
+    /* Τοποθέτηση ακριβώς στις άκρες */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 28px;
+    /* Πάχος περιγράμματος 3px */
+    padding: 4px; 
+    background: linear-gradient(135deg, #ff007f, #7f00ff, #00f0ff, #ff007f,#181822 0%, #0a0a0f, #ff0000, #ffd700, #00ff00, #ff0000, #ff0000, #ffd700, #00ff00, #ff0000);
+    background-size: 200% 200%;
+    
+    /* Δημιουργία εσωτερικής μάσκας */
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: source-out; /* Διορθώθηκε για απόλυτη συμβατότητα */
+    mask-composite: exclude;
+    
+    pointer-events: none;
+    z-index: 999; /* Το φέρνει μπροστά για να φαίνεται, αλλά χωρίς να εμποδίζει τα κλικ */
+    animation: moveGradient 6s linear infinite;
+}
+
+/* Το animation για την κίνηση των χρωμάτων */
+@keyframes moveGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+        
+        .widget-area {
+            width: 100%;
+            flex: 1;
+            position: relative;
+            background-color: #12121a;
+            border-top-left-radius: 28px;
+            border-top-right-radius: 28px;
+            overflow: hidden;
+        }
+
+        
+        .widget-iframe {
+            width: 100%;
+            height: 100%; 
+            border: none;
+            display: block;
+        }
+
+        
+        .controls-area {
+    width: 100%;
+    padding: 20px 20px 30px 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
+    background-image: url('https://i.imgur.com/95Wn7or.jpg');
+    background-size: cover;      
+    background-position: center;   
+    
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+    position: relative;
+    z-index: 10; 
+    margin-top: -45px;
+    box-shadow: 0 -15px 30px rgba(10, 10, 15, 0.95); 
+}
+
+
+       
+        .title-mask-container {
+            width: 100%;         
+            max-width: 400px;
+            height: 60px;         
+            overflow: hidden;     
+            position: relative;
+            background: transparent; 
+            border: none;            
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px; 
+        }
+
+        #metadataIframe {
+            width: 600px;
+            height: 100px;
+            border: none;
+            position: absolute;
+            top: 15px;            
+            
+            transform: scale(1.6); 
+            transform-origin: left center;
+
+            
+            filter: invert(1) sepia(1) saturate(8) hue-rotate(145deg)
+                    drop-shadow(0px 0px 3px #00f5ff) 
+                    drop-shadow(0px 0px 8px #00adb5); 
+
+           
+            animation: marqueeEffect 12s linear infinite;
+        }
+
+       
+        @keyframes marqueeEffect {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: -140%;
+            }
+        }
+
+        
+        .action-row {
+            width: 100%;
+            max-width: 320px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        
+        .social-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+        }
+
+        
+        .social-link svg {
+            width: 24px;
+            height: 24px;
+            fill: #ffffff;
+            transition: fill 0.2s ease;
+            filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.3));
+        }
+
+       
+        
+       
+        .social-link.instagram:hover, .social-link.instagram:active {
+            background-color: rgba(251, 173, 80, 0.1);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(225, 48, 108, 0.4);
+        }
+        .social-link.instagram:hover svg, .social-link.instagram:active svg {
+            fill: url(#instaGradient); 
+            filter: drop-shadow(0px 0px 6px #e1306c);
+        }
+
+       
+        .social-link.facebook:hover, .social-link.facebook:active {
+            background-color: rgba(24, 119, 242, 0.1);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(24, 119, 242, 0.4);
+        }
+        .social-link.facebook:hover svg, .social-link.facebook:active svg {
+            fill: #1877f2; 
+            filter: drop-shadow(0px 0px 6px #1877f2);
+        }
+
+        .social-link:active {
+            transform: scale(0.95) !important;
+        }
+
+
+.btn-play-wrapper {
+    position: relative;
+    width: 76px;
+    height: 76px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.btn-play {
+    border: none;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease, transform 0.2s ease;
+}
+
+.btn-play:active {
+    transform: scale(0.92);
+}
+
+.btn-play svg {
+    width: 32px;
+    height: 32px;
+    transition: fill 0.3s ease;
+}
+
+
+/* Κατάσταση 1: Αρχική Αναμονή (Κόκκινο με το δικό σας εφέ παλμού) */
+.btn-play.ready {
+    background: #ff0000 !important;
+    box-shadow: 0 0 15px #ff0000 !important;
+    animation: redPulse 2s infinite ease-in-out;
+}
+.btn-play.ready svg {
+    fill: #ffffff;
+}
+
+/* Κατάσταση 2: Φόρτωση / Buffering (Πορτοκαλί) */
+.btn-play.loading {
+    background: #ffaa00 !important; /* Αλλάχτηκε σε Πορτοκαλί */
+    box-shadow: 0 0 20px #ffaa00 !important;
+    animation: redPulse 0.8s infinite ease-in-out; /* Διατήρηση του γρήγορου παλμού σας */
+}
+.btn-play.loading svg {
+    fill: #ffffff;
+}
+
+/* Κατάσταση 3: Αναπαραγωγή (Το δικό σας ζωντανό Πράσινο) */
+.btn-play.playing {
+    background: #39ff14 !important;
+    box-shadow: 0 0 20px #39ff14, inset 0 0 10px rgba(0,0,0,0.2) !important;
+    animation: none;
+}
+.btn-play.playing svg {
+    fill: #14141c; 
+}
+
+/* Το χρυσό δαχτυλίδι (Αυτούσιο το δικό σας, έμεινε άθικτο) */
+.gold-ring {
+    position: absolute;
+    width: 86px;  
+    height: 86px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: #ffd700;
+    border-bottom-color: #ffd700;
+    z-index: 4;
+    opacity: 0; 
+    transition: opacity 0.4s ease;
+}
+
+
+
+.btn-play.playing ~ .gold-ring {
+    opacity: 1;
+    animation: spinGold 2s linear infinite;
+}
+
+
+
+
+@keyframes redPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 0 25px rgba(255, 0, 0, 1), 0 0 35px rgba(255, 0, 0, 0.5);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    }
+}
+
+
+@keyframes spinGold {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+        
+        
+
+       
+
+#currentDate {
+    color: #0cfc08;
+    text-shadow: 0px 0px 6px rgba(255, 215, 0, 0.6);
+}
+
+
+#currentTime {
+    color: #fcfc08;
+    text-shadow: 0px 0px 6px #00f5ff;
+}
+
+.volume-container {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.volume-label {
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.4);
+}
+
+
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 25px;
+}
+
+
+#volumeSlider {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    
+    /* Νέο Κινούμενο Πολύχρωμο Φόντο (Κόκκινο, Χρυσό, Πράσινο) */
+    background: linear-gradient(90deg, #ff0000, #ffd700, #00ff00, #ff0000) !important;
+        background-size: 100% auto !important; /* Πιο πυκνά χρώματα */
+    animation: moveVolumeGradient 4s linear infinite !important; /* Πιο γρήγορη κίνηση */
+ /* Αργή κίνηση πέρα-δώθε */
+    
+    border-radius: 3px;
+    outline: none;
+    position: relative;
+    z-index: 5;
+    cursor: pointer;
+}
+
+/* Το animation για την απαλή κίνηση των χρωμάτων της μπάρας */
+@keyframes moveVolumeGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+
+#volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #00f5ff;
+    box-shadow: 0 0 8px #00f5ff;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+#volumeSlider::-webkit-slider-thumb:active {
+    transform: scale(1.2);
+}
+
+
+.volume-tick {
+    position: absolute;
+    width: 3px;
+    height: 16px; 
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 2;
+    pointer-events: none; 
+    border-radius: 2px;
+}
+.tick-start { left: 1px; }
+.tick-center { left: 50%; transform: translateX(-50%); }
+.tick-end { right: 1px; }
+
+
+.menu-btn {
+    background: transparent;
+    border: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu-btn svg {
+    width: 28px;
+    height: 28px;
+    fill: #ffffff;
+    filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.3));
+    transition: fill 0.2s;
+}
+.menu-btn:hover svg {
+    fill: #00f5ff; 
+}
+
+
+.playlist-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(20, 20, 28, 0.95); /* Σκούρο ημιδιάφανο φόντο */
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+}
+
+.playlist-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+.playlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+#closeMenuBtn {
+    background: transparent; border: none; color: #ffffff; font-size: 30px; cursor: pointer;
+}
+
+.playlist-items {
+    list-style: none; overflow-y: auto; flex: 1;
+}
+.track-item {
+    padding: 12px; margin-bottom: 8px; background: rgba(255,255,255,0.03);
+    border-radius: 8px; cursor: pointer; display: flex; flex-direction: column;
+    transition: background 0.2s;
+}
+.track-item:hover {
+    background: rgba(0, 245, 255, 0.1);
+}
+.track-artist { color: #00f5ff; font-size: 0.85rem; font-weight: bold; }
+.track-name { color: #ffffff; font-size: 1rem; margin-top: 2px; }
+/* --- ΧΡΩΜΑΤΑ ΓΙΑ ΤΑ ΤΡΑΓΟΥΔΙΑ ΤΗΣ ΛΙΣΤΑΣ --- */
+
+/* 1ο Τραγούδι: Απαλό Χρυσό */
+/* --- ΧΡΩΜΑΤΑ ΓΙΑ ΤΑ ΤΡΑΓΟΥΔΙΑ ΤΗΣ ΛΙΣΤΑΣ --- */
+
+/* Σταθερό, κοινό χρώμα για όλα τα ονόματα των Καλλιτεχνών (π.χ. Απαλό Γκρι/Λευκό) */
+.playlist-items .track-item .track-artist { 
+    color: #a0a0aa !important; /* Ένα όμορφο, σταθερό χρώμα για όλους τους καλλιτέχνες */
+    font-weight: bold;
+    text-shadow: none; /* Αφαιρούμε τυχόν λάμψη για να είναι διακριτικό */
+}
+
+/* Διαφορετικά χρώματα ΜΟΝΟ για τους Τίτλους των Τραγουδιών */
+.playlist-items .track-item:nth-child(1) .track-name { color: #ffd700; } /* 1ο: Χρυσό */
+.playlist-items .track-item:nth-child(2) .track-name { color: #00f5ff; } /* 2ο: Neon Γαλάζιο */
+.playlist-items .track-item:nth-child(3) .track-name { color: #ff00ff; } /* 3ο: Φούξια */
+.playlist-items .track-item:nth-child(4) .track-name { color: #ffa500; } /* 4ο: Πορτοκαλί */
+
+
+
+.track-item.active .track-name {
+    color: #39ff14 !important;
+    text-shadow: 0px 0px 8px #39ff14;
+    font-weight: bold;
+}
+
+
+.track-item.active .track-artist {
+    color: #a0a0aa !important; 
+}
+
+
+.track-item.active {
+    background: rgba(57, 255, 20, 0.08) !important;
+    border: 1px solid rgba(57, 255, 20, 0.25);
+}
+
+.youtube-btn {
+    background: transparent; border: none; width: 50px; height: 50px; cursor: pointer;
+    display: flex; justify-content: center; align-items: center;
+}
+.youtube-btn svg {
+    width: 28px; height: 28px; fill: #ffffff;
+    filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.3));
+    transition: fill 0.2s, filter 0.2s;
+}
+.youtube-btn:hover svg {
+    fill: #ff0000; /* Γίνεται έντονο κόκκινο στο άγγιγμα */
+    filter: drop-shadow(0px 0px 8px #ff0000);
+}
+
+
+.youtube-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 15, 22, 0.96); z-index: 25;
+    display: flex; flex-direction: column; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease; padding: 20px;
+}
+.youtube-overlay.open { opacity: 1; pointer-events: auto; }
+.youtube-overlay-header {
+    display: flex; justify-content: space-between; align-items: center; color: #ffffff;
+    border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 20px;
+}
+#closeYoutubeBtn { background: transparent; border: none; color: #ffffff; font-size: 30px; cursor: pointer; }
+
+
+.search-box { display: flex; gap: 10px; width: 100%; }
+#ytSearchInput {
+    flex: 1; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.05); color: #ffffff; font-size: 0.95rem; outline: none;
+}
+#ytSearchInput:focus { border-color: #ff0000; box-shadow: 0 0 8px rgba(255,0,0,0.3); }
+#ytSearchGoBtn {
+    padding: 0 20px; background: #ff0000; border: none; color: #ffffff;
+    font-weight: bold; border-radius: 8px; cursor: pointer; transition: background 0.2s;
+}
+#ytSearchGoBtn:hover { background: #cc0000; }
+
+
+    </style>
+</head>
+<body>
+
+   
+    <svg width="0" height="0" style="position: absolute;">
+        <linearGradient id="instaGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#feda75" />
+            <stop offset="25%" stop-color="#fa7e1e" />
+            <stop offset="50%" stop-color="#d62976" />
+            <stop offset="75%" stop-color="#962fbf" />
+            <stop offset="100%" stop-color="#4f5bd5" />
+        </linearGradient>
+    </svg>
+
+    <div class="player-container">
+      
+        <div class="widget-area">
+           
+            <iframe class="widget-iframe" id="liveWidget" src="https://players.rcast.net/artistimageonly/200586" allow="autoplay"></iframe>
+       
+            <img id="customArtwork" src="" alt="Artist Artwork" style="display: none; width:100%; height:100%; object-fit:contain; border-radius:28px 28px 0 0;">
+<iframe id="youtubePlayer" name="youtubeTarget" src="src="about:blank"" style="display: none; width:100%; height:100%; border:none; border-radius:28px 28px 0 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+            <!-- 4. Το Παράθυρο της Playlist (Μενού) -->
+            <div class="playlist-overlay" id="playlistOverlay">
+                <div class="playlist-header">
+                    <h3>Λίστα Τραγουδιών</h3>
+                    <button id="closeMenuBtn" type="button">&times;</button>
+                </div>
+                <ul class="playlist-items">
+            <!-- ΕΔΩ ΘΑ ΠΡΟΣΘΕΤΕΤΕ ΤΑ ΤΡΑΓΟΥΔΙΑ ΣΑΣ ΟΠΩΣ ΤΟ ΠΑΡΑΚΑΤΩ ΠΑΡΑΔΕΙΓΜΑ -->
+            <li class="track-item" data-url="https://files.catbox.moe/fqt7r3.mp3" data-img="https://xatimg.com/image/5ZUX29GZ5x2p.gif">
+                <span class="track-artist">CHOICES 1</span>
+                <span class="track-name">Τίτλος Τραγουδιού 1</span>
+            </li>
+            <li class="track-item" data-url="https://files.catbox.moe/k4dtxi.mp3" data-img="https://xatimg.com/image/jCLBCriIqENj.jpg">
+                <span class="track-artist">Καλλιτέχνης 2</span>
+                <span class="track-name">CHOICES 2</span>
+            </li> <li class="track-item" data-url="https://files.catbox.moe/fqt7r3.mp3" data-img="https://xatimg.com/image/5ZUX29GZ5x2p.gif">
+                <span class="track-artist">CHOICES 3</span>
+                <span class="track-name">Τίτλος Τραγουδιού 1</span>
+            </li>
+            <li class="track-item" data-url="https://files.catbox.moe/k4dtxi.mp3" data-img="https://xatimg.com/image/jCLBCriIqENj.jpg">
+                <span class="track-artist">Καλλιτέχνης 2</span>
+                <span class="track-name">CHOICES 4</span>
+            </li>
+           
+        </ul>
+            </div>
+
+<!-- YouTube Overlay (Προσαρμόζεται δυναμικά στο ύψος της οθόνης) -->
+<div class="youtube-overlay" id="youtubeOverlay" style="display: none; position: fixed !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; width: 100% !important; max-width: 480px !important; height: 100% !important; max-height: 80vh !important; z-index: 99999999 !important; background: transparent !important; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; box-sizing: border-box !important; border-radius: 28px !important; overflow: hidden !important;">
+    
+    <!-- Header Παραθύρου -->
+    <div class="youtube-overlay-header" style="display: flex !important; justify-content: space-between !important; align-items: center !important; padding: 12px 15px !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; background: #181822 !important; height: 40px !important;">
+        <h3 id="overlayTitle" style="margin: 0 !important; color: #ffffff !important; font-size: 1.2rem !important; font-family: sans-serif;">YouTube Video</h3>
+        <button id="closeYoutubeBtn" type="button" style="background: none !important; border: none !important; color: #ffffff !important; font-size: 28px !important; cursor: pointer !important; line-height: 1 !important;">&times;</button>
+    </div>
+    
+    <!-- Σώμα Chat -->
+    <div id="chatContainer" style="display: none; padding: 5px !important; margin: 10px !important; background: #ffffff !important; border-radius: 12px !important; border: 2px solid #007bff !important; overflow: hidden !important;">
+        <iframe id="chatPlayer" src="https://panagiotis-live-chat.onrender.com" style="width: 100% !important; height: 100% !important; border: none !important; display: block !important;" allow="autoplay"></iframe>
+    </div>
+    
+    <!-- Το σώμα του YouTube -->
+    <div id="youtubeContainer" style="text-align: center !important; color: #ffffff !important; padding: 40px 20px !important; display: none; background: #181822 !important;">
+        <p style="margin-bottom: 20px !important; font-size: 1.1rem !important;">Θέλετε να παρακολουθήσετε το προτεινόμενο βίντεο;</p>
+        <a href="https://www.youtube.com/embed/xB-T1Vp9Om0?list=PLZbc7UYSkhvreYdPnzB-RHLx4dd6vA6QO" target="youtubeTarget" id="loadVideoBtn" style="display: inline-block !important; text-decoration: none !important; padding: 12px 24px !important; background: #ff0000 !important; color: #ffffff !important; font-weight: bold !important; border-radius: 8px !important; cursor: pointer !important; font-size: 1rem !important; box-shadow: 0 0 10px #ff0000 !important;">
+            Έναρξη Βίντεο
+        </a>
+    </div>
+</div>
+
+
+</div>
+ 
+        <div class="controls-area">
+
+            
+            
+            <div class="title-mask-container">
+                <iframe id="metadataIframe" src="https://status.rcast.net/200586" scrolling="no"></iframe>
+            </div>
+<!-- ΝΕΟ ΠΛΑΙΣΙΟ ΚΑΙΡΟΥ ΚΑΙ ΠΟΛΗΣ -->
+<div style="color: #ffffff; font-size: 1rem; font-weight: bold; margin-bottom: 20px; text-shadow: 0px 0px 8px #00f5ff; display: flex; align-items: center; gap: 8px;">
+    <!-- Η νέα εικόνα PNG που θα αλλάζει αυτόματα -->
+    <img id="weatherIcon" src="https://cdn-icons-png.flaticon.com/512/869/869869.png" alt="Weather" style="width: 22px; height: 22px; object-fit: contain; filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.6));">
+    <span id="weatherRealText">ΦΟΡΤΩΣΗ ΚΑΙΡΟΥ...</span>
+</div>
+
+
+<div class="volume-container">
+    
+    <div class="volume-label">Ένταση: <span id="volumeNumber">50</span>%</div>
+    
+    <div class="slider-wrapper">
+        
+        <div class="volume-tick tick-start"></div>
+        <div class="volume-tick tick-center"></div>
+        <div class="volume-tick tick-end"></div>
+        
+        
+        <input type="range" id="volumeSlider" min="0" max="100" value="50">
+    </div>
+</div>
+
+           
+            
+<div class="action-row">
+    
+    
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+        
+        <div id="currentDate" class="live-info-text">--/--</div>
+   <button class="menu-btn" id="menuBtn" title="Λίστα Τραγουδιών">
+    <svg viewBox="0 0 24 24">
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+    </svg>
+</button>     
+        <a href="https://www.instagram.com/" target="_blank" class="social-link instagram" title="Instagram">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+            </svg>
+        </a>
+    </div>
+
+    
+    
+<div class="player-controls" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+    
+    <!-- Το Κουμπί του Chat: Μόνο το εικονίδιο, στρογγυλό, ακριβώς πάνω από το Play -->
+    <button id="chatBtn" title="Άνοιγμα Chat" style="background: #007bff; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+
+    <!-- Wrapper του Play: Τώρα έμεινε καθαρό και το χρυσό δαχτυλίδι θα κάτσει τέλεια -->
+    <div class="btn-play-wrapper"> 
+        <button class="btn-play ready" id="playBtn" title="Αναπαραγωγή">
+            <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="gold-ring" id="goldRing"></div>
+    </div>
+
+</div>
+
+
+
+
+    
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+        
+        <div id="currentTime" class="live-info-text">00:00</div>
+   
+<button class="youtube-btn" id="youtubeBtn" title="Αναζήτηση YouTube">
+    <svg viewBox="0 0 24 24">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+    </svg>
+</button>
+     
+        <a href="https://web.facebook.com/" target="_blank" class="social-link facebook" title="Facebook">
+            <svg viewBox="0 0 24 24">
+                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+            </svg>
+        </a>
+    </div>
+
+</div>
+
+    <audio id="audioPlayer" src="https://stream.rcast.net/200586" preload="none"></audio>
+<script>
+       const audio = document.getElementById('audioPlayer');
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+
+    const playSVG = '<path d="M8 5v14l11-7z"/>';
+    const pauseSVG = `
+        <circle cx="7.5" cy="4" r="1.5" fill="#14141c"/>
+        <circle cx="16.5" cy="4" r="1.5" fill="#14141c"/>
+        <path d="M6 14h3V7H6v7zm9-7v7h3V7h-3z"/>
+        <path d="M4.5 16.5 C 4.5 22.5, 19.5 22.5, 19.5 16.5" fill="none" stroke="#14141c" stroke-width="2" stroke-linecap="round"/>
+    `;
+
+    audio.volume = 0.5;
+
+    playBtn.addEventListener('click', () => {
+        if (audio.paused) {
+            playBtn.classList.add('loading');
+            audio.play()
+                .then(() => {
+                    playBtn.classList.remove('loading', 'ready');
+                    playBtn.classList.add('playing');
+                    playIcon.innerHTML = pauseSVG;
+                })
+                .catch(error => {
+                    playBtn.classList.remove('loading', 'playing');
+                    playBtn.classList.add('ready');
+                    alert("Αδυναμία φόρτωσης. Δοκιμάστε ξανά.");
+                });
+        } else {
+            audio.pause();
+            audio.src = ""; 
+            audio.src = "https://stream.rcast.net/200586";
+            
+            if (customArtwork && liveWidget) {
+                customArtwork.style.display = 'none';
+                customArtwork.src = ""; 
+                liveWidget.style.display = 'block'; 
+            }
+            if (youtubePlayer) {
+                youtubePlayer.style.display = 'none';
+                youtubePlayer.src = "";
+            }
+            
+            trackItems.forEach(i => i.classList.remove('active'));
+            playBtn.classList.remove('playing', 'loading');
+            playBtn.classList.add('ready');
+            playIcon.innerHTML = playSVG;
+        }
+    });
+
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumeNumber = document.getElementById('volumeNumber');
+    if (volumeSlider && volumeNumber) {
+        volumeSlider.addEventListener('input', (e) => {
+            volumeNumber.textContent = e.target.value;
+            audio.volume = e.target.value / 100;
+        });
+    }
+
+    function updateClock() {
+        const now = new Date();
+        const dateEl = document.getElementById('currentDate');
+        const timeEl = document.getElementById('currentTime');
+        
+        if (dateEl) {
+            let dayName = now.toLocaleDateString('el-GR', { weekday: 'short' });
+            dayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            dateEl.textContent = `${dayName}, ${day}/${month}/${now.getFullYear()}`;
+        }
+        
+        if (timeEl) {
+            let hours = now.getHours();
+            const ampm = hours >= 12 ? 'ΜΜ' : 'ΠΜ';
+            hours = hours % 12; hours = hours ? hours : 12;
+            timeEl.textContent = `${String(hours).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')} ${ampm}`;
+        }
+
+                // === ΑΥΤΟΜΑΤΗ ΑΛΛΑΓΗ ΕΙΚΟΝΑΣ ΗΛΙΟΥ / ΦΕΓΓΑΡΙΟΥ ===
+        const iconEl = document.getElementById('weatherIcon');
+        if (iconEl) {
+            const currentHour = now.getHours();
+            
+            // Οι σύνδεσμοι για τις εικόνες
+            const sunURL = "https://cdn-icons-png.flaticon.com/512/869/869869.png";
+            const moonURL = "https://cdn-icons-png.flaticon.com/128/740/740878.png"; // Ένα πανέμορφο φεγγάρι στο ίδιο στυλ
+            
+            // Από τις 06:00 το πρωί έως τις 18:59 το απόγευμα δείξε Ήλιο
+            if (currentHour >= 6 && currentHour < 19) {
+                if (iconEl.src !== sunURL) {
+                    iconEl.src = sunURL;
+                }
+            } else {
+                // Από τις 19:00 το απόγευμα έως τις 05:59 το πρωί δείξε Φεγγάρι
+                if (iconEl.src !== moonURL) {
+                    iconEl.src = moonURL;
+                }
+            }
+        }
+
+        }
+   
+    updateClock(); 
+    setInterval(updateClock, 1000);
+
+// ΣΥΝΑΡΤΗΣΗ ΑΥΤΟΜΑΤΟΥ ΚΑΙΡΟΥ ΚΑΙ ΠΟΛΗΣ (ΔΙΟΡΘΩΜΕΝΗ)
+async function updateWeatherReal() {
+    try {
+        const geoRes = await fetch("https://get.geojs.io/v1/ip/geo.json");
+        const d = await geoRes.json();
+        
+        if (d && d.latitude && d.longitude) {
+            const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${d.latitude}&longitude=${d.longitude}&current_weather=true`);
+            const w = await weatherRes.json();
+            
+            if (w && w.current_weather) {
+                var cityName = d.city ? d.city.toUpperCase() : "ΑΘΗΝΑ";
+                var temperature = Math.round(w.current_weather.temperature);
+                document.getElementById("weatherRealText").innerHTML = cityName + " | " + temperature + "°C";
+            }
+        }
+    } catch (e) {
+        console.log("Σφάλμα καιρού:", e);
+    }
+}
+
+
+    
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const playlistOverlay = document.getElementById('playlistOverlay');
+    const youtubeBtn = document.getElementById('youtubeBtn');
+    const closeYoutubeBtn = document.getElementById('closeYoutubeBtn');
+    const youtubeOverlay = document.getElementById('youtubeOverlay');
+    const liveWidget = document.getElementById('liveWidget');
+    const customArtwork = document.getElementById('customArtwork');
+    const youtubePlayer = document.getElementById('youtubePlayer');
+    const trackItems = document.querySelectorAll('.track-item');
+    const loadVideoBtn = document.getElementById('loadVideoBtn');
+
+   
+    if (menuBtn) menuBtn.addEventListener('click', () => playlistOverlay.classList.add('open'));
+    if (closeMenuBtn) closeMenuBtn.addEventListener('click', () => playlistOverlay.classList.remove('open'));
+    if (youtubeBtn) youtubeBtn.addEventListener('click', () => youtubeOverlay.classList.add('open'));
+    if (closeYoutubeBtn) closeYoutubeBtn.addEventListener('click', () => youtubeOverlay.classList.remove('open'));
+
+    trackItems.forEach(item => {
+        item.addEventListener('click', () => {
+            trackItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            audio.pause();
+            if (youtubePlayer) { youtubePlayer.style.display = 'none'; youtubePlayer.src = ""; }
+            audio.src = item.getAttribute('data-url');
+            liveWidget.style.display = 'none';
+            customArtwork.src = item.getAttribute('data-img');
+            customArtwork.style.display = 'block';
+            playlistOverlay.classList.remove('open');
+            
+            playBtn.classList.remove('ready', 'loading');
+            playBtn.classList.add('playing');
+            playIcon.innerHTML = pauseSVG;
+            audio.play();
+        });
+    });
+
+              
+    if (loadVideoBtn) {
+        loadVideoBtn.addEventListener('click', () => {
+            audio.pause(); // trackItems.forEach(i => i.classList.remove('active'));
+            
+            liveWidget.style.display = 'none';
+            customArtwork.style.display = 'none';
+            youtubePlayer.style.display = 'block';
+            
+            youtubeOverlay.classList.remove('open');
+            
+           playBtn.classList.remove('ready', 'loading');
+            playBtn.classList.add('playing');
+            playIcon.innerHTML = pauseSVG;
+        });
+    }
+
+
+       // Ανανέωση Metadata Iframe ανά 10 δευτερόλεπτα, ΜΟΝΟ αν το YouTube/Chat είναι κλειστό
+    setInterval(() => {
+        const sharedOverlay = document.getElementById('youtubeOverlay');
+        const iframe = document.getElementById('metadataIframe');
+        
+        // Ελέγχουμε αν το παράθυρο είναι ανοιχτό
+        const isOverlayOpen = sharedOverlay && 
+            (sharedOverlay.classList.contains('open') || 
+             sharedOverlay.style.display === 'block' || 
+             sharedOverlay.style.opacity === '1');
+
+        // Αν το παράθυρο είναι ΚΛΕΙΣΤΟ, τότε μόνο ανανέωσε τους τίτλους
+        if (!isOverlayOpen && iframe) {
+            iframe.src = iframe.src;
+        }
+    }, 10000);
+
+    // Εκκίνηση και αυτόματη ανανέωση καιρού κάθε 15 λεπτά (Έμεινε άθικτο!)
+    updateWeatherReal();
+    setInterval(updateWeatherReal, 900000);
+
+
+</script><!-- Διορθωμένο Script: Δυναμικό ύψος για να "μαζεύει" το Chat όταν μικραίνει ο browser -->
+<script>
+    (function() {
+        window.addEventListener('load', () => {
+            const chatButton = document.getElementById('chatBtn');
+            const youtubeButton = document.getElementById('youtubeBtn');
+            const closeButton = document.getElementById('closeYoutubeBtn');
+            const loadVideoBtn = document.getElementById('loadVideoBtn');
+            const sharedOverlay = document.getElementById('youtubeOverlay');
+            
+            const chatContainer = document.getElementById('chatContainer');
+            const youtubeContainer = document.getElementById('youtubeContainer');
+            const overlayTitle = document.getElementById('overlayTitle');
+
+            // Λειτουργία όταν πατάμε το "Άνοιγμα Chat"
+            if (chatButton && sharedOverlay) {
+                chatButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (youtubeContainer) youtubeContainer.style.display = 'none'; 
+                    
+                    // Διορθώθηκε εδώ: Δυναμικό ύψος που προσαρμόζεται πάντα στον player
+                    if (chatContainer) {
+                        chatContainer.style.display = 'block'; 
+                        chatContainer.style.height = 'calc(100% - 60px)'; 
+                    }
+                    
+                    if (overlayTitle) overlayTitle.textContent = "Live Chat"; 
+                    
+                    sharedOverlay.style.setProperty('display', 'block', 'important');
+                    setTimeout(() => {
+                        sharedOverlay.style.opacity = '1';
+                        sharedOverlay.style.pointerEvents = 'auto';
+                    }, 10);
+                });
+            }
+
+            // Λειτουργία όταν ανοίγουμε το YouTube (από το μενού)
+            if (youtubeButton && sharedOverlay) {
+                youtubeButton.addEventListener('click', () => {
+                    if (chatContainer) chatContainer.style.display = 'none'; 
+                    if (youtubeContainer) youtubeContainer.style.display = 'block'; 
+                    if (overlayTitle) overlayTitle.textContent = "YouTube Video"; 
+                    
+                    sharedOverlay.style.setProperty('display', 'block', 'important');
+                    setTimeout(() => {
+                        sharedOverlay.style.opacity = '1';
+                        sharedOverlay.style.pointerEvents = 'auto';
+                    }, 10);
+                });
+            }
+
+            // Λειτουργία όταν πατάμε "Έναρξη Βίντεο"
+            if (loadVideoBtn && sharedOverlay) {
+                loadVideoBtn.addEventListener('click', () => {
+                    sharedOverlay.style.opacity = '0';
+                    sharedOverlay.style.pointerEvents = 'none';
+                    setTimeout(() => {
+                        sharedOverlay.style.setProperty('display', 'none', 'important');
+                    }, 300);
+                });
+            }
+
+            // Λειτουργία όταν κλείνουμε το παράθυρο με το "Χ"
+            if (closeButton && sharedOverlay) {
+                closeButton.addEventListener('click', () => {
+                    sharedOverlay.style.opacity = '0';
+                    sharedOverlay.style.pointerEvents = 'none';
+                    setTimeout(() => {
+                        sharedOverlay.style.setProperty('display', 'none', 'important');
+                    }, 300);
+                });
+            }
+        });
+    })();
+
+</script>
+</body>
+</html>
